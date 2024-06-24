@@ -1,0 +1,25 @@
+name: dockerprom
+services:
+  dockerprom:
+    image: dockerprom
+    ports:
+      - 9376:3000  # change 9376 to your desired listen port
+    tty: true  # just for pretty colors
+    environment:
+      EXCLUDE_LABELS: >-
+        com.docker.compose.config-hash,
+        com.docker.compose.container-number,
+        com.docker.compose.image,
+        com.docker.compose.oneoff,
+        com.docker.compose.project.config_files,
+        com.docker.compose.project.working_dir,
+        com.docker.compose.depends_on,
+        com.docker.compose.version,
+    volumes:
+      - /var/lib/docker/containers/:/var/lib/docker/containers/:ro
+      - /sys/fs/cgroup:/sys/fs/cgroup:ro
+    deploy:
+      resources:
+        limits:
+          cpus: '1'
+          memory: 20M  # shouldn't need anywhere near this much
