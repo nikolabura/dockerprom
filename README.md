@@ -16,7 +16,7 @@ See the included `docker-compose.yaml` for an example of how it can be deployed 
 ```yaml
 services:
   dockerprom:
-    image: dockerprom
+    image: ghcr.io/nikolabura/dockerprom:master
     ports:
       - 9376:3000
     volumes:
@@ -53,7 +53,7 @@ An example `docker-compose.yaml` is included.
 If you're running it manually, you might use something like:
 
 ```bash
-docker run --rm --name dockerprom -p 9376:3000 -v /var/lib/docker/containers/:/conts:ro -v /sys/fs/cgroup:/cgfs:ro dockerprom -d /conts -c /cgfs
+docker run --rm --name dockerprom -p 9376:3000 -v /var/lib/docker/containers/:/conts:ro -v /sys/fs/cgroup:/cgfs:ro ghcr.io/nikolabura/dockerprom:master -d /conts -c /cgfs
 ```
 
 ### As a systemd service

@@ -1,7 +1,7 @@
 name: dockerprom
 services:
   dockerprom:
-    image: dockerprom
+    image: ghcr.io/nikolabura/dockerprom:master
     ports:
       - 9376:3000  # change 9376 to your desired listen port
     tty: true  # just for pretty colors
