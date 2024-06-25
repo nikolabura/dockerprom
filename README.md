@@ -38,7 +38,12 @@ Don't expect this tool to be perfect. Use cadvisor if you need something more ba
 
 ### As a standalone binary
 
-Download a binary from the releases page. (This tool doesn't really attempt to support anything other than Linux at the moment, apologies.) Extract it and run it with sudo: `sudo ./dockerprom` and you should be able to `curl localhost:3000` to see the metrics. Done!
+Download a binary from the releases page. (This tool doesn't really attempt to support anything other than Linux at the moment, apologies.) These links *should* work:
+
+- [I have an ARM CPU](https://github.com/nikolabura/dockerprom/releases/latest/download/dockerprom-aarch64-unknown-linux-musl.tar.gz)
+- [I have an x86 CPU](https://github.com/nikolabura/dockerprom/releases/latest/download/dockerprom-x86_64-unknown-linux-musl.tar.gz)
+
+Extract it and run it with sudo: `sudo ./dockerprom` and you should be able to `curl localhost:3000` to see the metrics. Done!
 
 To expose it to all interfaces, not just localhost, set the `-l` flag. Use whatever port you want. `[::]` will make it listen on both IPv4 and IPv6 interfaces.
 
