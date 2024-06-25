@@ -3,10 +3,11 @@ name: release
 permissions:
   contents: write
 
-on:
-  push:
-    tags:
-      - v[0-9]+.*
+on: workflow_dispatch
+#on:
+#  push:
+#    tags:
+#      - v[0-9]+.*
 
 jobs:
   create-release:
