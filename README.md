@@ -100,6 +100,24 @@ You can also use environment variable `BASICAUTH`, like `BASICAUTH=user:pass`
 `--include-labels`: Same concept as above, but a whitelist instead of a blacklist. *Only* the comma-separated container labels here will be transfered to metric labels.
 
 
+## Metrics
+
+Five metrics per running container are exported by this program.
+
+- `container_memory_usage`: Gauge, estimated bytes of memory used by this container.
+- `container_cpu_user_total`: Counter, total CPU seconds used by the container in userspace.
+- `container_cpu_system_total`: Counter, total CPU seconds used by the container in kernelspace.
+- `container_blkio_read_total`: Counter, total bytes read from all filesystems by the container.
+- `container_blkio_write_total`: Counter, total bytes written to all filesystems by the container.
+
+The metrics are labeled with the following:
+
+- `id`: 64-character container ID.
+- `name`: Container name.
+- `image`: Container image name.
+- `container_label_*`: One of these for each Docker label on the container. Dots are replaced with underscores. See `--exclude-labels` and `--include-labels` above.
+
+
 ## Discussion
 
 ### Rationale / Why write this tool?
