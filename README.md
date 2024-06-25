@@ -63,10 +63,14 @@ docker run --rm --name dockerprom -p 9376:3000 -v /var/lib/docker/containers/:/c
 
 ### As a systemd service
 
-```rust
-todo!();
-```
+Download and extract the standalone binary for your system, and move it to `/usr/bin/dockerprom`.
 
+Copy the `dockerprom.service` file to `/etc/systemd/system` or similar **and probably edit it**. It should work out of the box, but will only listen on localhost. If you change that, you should probably enable basicauth. Please change the default `admin:admin` credentials.
+
+```bash
+sudo systemctl daemon-reload
+sudo systemctl enable --now dockerprom.service
+```
 
 ## Arguments
 

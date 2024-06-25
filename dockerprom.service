@@ -1,0 +1,46 @@
+[Unit]
+Description=Docker container metrics Prometheus exporter
+After=docker.service
+StartLimitIntervalSec=30
+StartLimitBurst=2
+
+[Service]
+#                                vvvvvvvvvvvvvv Customize arguments here
+ExecStart=/usr/bin/dockerprom -l 127.0.0.1:9376
+#ExecStart=/usr/bin/dockerprom -l [::]:9376  # Uncomment this to listen on all interfaces
+#Environment="BASICAUTH=admin:admin"         # Uncomment this and edit to enable basicauth
+
+# More service options
+Environment="RUST_LOG_STYLE=always"
+Restart=on-failure
+RestartSec=3
+
+# Hardening options
+ReadOnlyPaths=/var/lib/docker/containers
+ProtectSystem=strict
+ProtectHome=yes
+PrivateDevices=yes
+PrivateUsers=yes
+ProtectKernelTunables=yes
+ProtectKernelModules=yes
+ProtectControlGroups=yes
+ProtectClock=yes
+ProtectProc=noaccess
+ProtectKernelLogs=yes
+ProtectHostname=yes
+RestrictAddressFamilies=AF_INET AF_INET6
+MemoryDenyWriteExecute=yes
+SystemCallFilter=@default @file-system @basic-io @system-service @signal @io-event @network-io
+SystemCallFilter=~@privileged @resources
+RestrictNamespaces=yes
+CapabilityBoundingSet=
+SystemCallArchitectures=native
+RestrictSUIDSGID=yes
+RestrictRealtime=yes
+PrivateTmp=yes
+NoNewPrivileges=yes
+ProcSubset=pid
+LockPersonality=yes
+
+[Install]
+WantedBy=multi-user.target
