@@ -11,7 +11,7 @@ RUN cargo install --path .
 
 ###
 
-FROM alpine
+FROM alpine:3.20.1
 
 COPY --from=builder /usr/local/cargo/bin/dockerprom /dockerprom
 
